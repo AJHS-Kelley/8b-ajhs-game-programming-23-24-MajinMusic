@@ -9,3 +9,7 @@ breakfastFoods = ["Bacon", "Eggs", "Cereal", "Pancakes", "Milk"]
 testScores = [95, 100, 25, 15, 27, 35]
 classGPA = [3.14, 2.25, 1.74, 1.99, 0.99, 4.25]
 
+# Printing Contents of a List
+print(breakfastFoods)
+print(testScores)
+print(classGPA)
