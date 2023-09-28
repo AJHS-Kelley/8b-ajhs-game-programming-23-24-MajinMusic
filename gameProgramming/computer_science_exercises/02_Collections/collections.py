@@ -1,4 +1,4 @@
-# Collections Examples, Jacob Desha, v0.1c
+# Collections Examples, Jacob Desha, v0.1d
 
 # LIST -- ORDERED, CHANGEAVLE, ALLOWS DUPLICATE VALUES\
 breakfastFoods = ["Bacon", "Eggs", "Cereal", "Pancakes", "Milk"]
@@ -23,5 +23,10 @@ classGPA = [3.14, 2.25, 1.74, 1.99, 0.99, 4.25]
 #print(breakfastFoods[-1])
 #print(testScores[-1])
 #print(classGPA[-1])
+
+# Pause - WYOC -- Access the 3rd Element in Each Lis
+#print(breakfastFoods[2])
+#print(testScores[2])
+#print(classGPA[2])
 
 
