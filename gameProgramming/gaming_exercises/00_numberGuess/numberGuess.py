@@ -63,8 +63,10 @@ while playerScore == -1 and cpuScore == -1:
         rangeMax = 15
         numAttempts = 3
 
-
-    print(f"You need to guess a number from {rangeMin} to {rangeMax} and you have four guesses.\nIf you guess it right, you get a point.\nIf you can't guess it in four guesses, the CPU gets a point.\n")
+    ###
+    #This line will ALWAYS print 'four guesses' even though it changes based on difficulty.  Please fix. 
+    print(f"You need to guess a number from {rangeMin} to {rangeMax} and you have four guesses.\nIf you guess it right, you get a point.\nIf you can't guess it in four guesses, the CPU gets a point.\n")  
+    ###
     # ADD CODE HERE TO CHANGE DIFFICULTY BETWEEN EACH MATCH.
     # print() an explanation of your three difficulty levels
     # Use input() to store difficulty in difficulty variable.
