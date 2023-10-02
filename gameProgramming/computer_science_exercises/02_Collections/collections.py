@@ -121,18 +121,24 @@ testScores = [95, 100, 25, 15, 27, 35, 100]
 classGPA = [3.14, 2.25, 1.74, 1.99, 0.99, 4.25, 4.25]
 
 # .count() will return the number of times a value appears in a list.
-numMilk = breakfastFoods.count("Milk")
-print(f"There are {numMilk} Milks in the list.")
-numPancakes = breakfastFoods.count("Pancakes")
-print(f"There are {numPancakes} Pancakes in the list.")
+#numMilk = breakfastFoods.count("Milk")
+#print(f"There are {numMilk} Milks in the list.")
+#numPancakes = breakfastFoods.count("Pancakes")
+#print(f"There are {numPancakes} Pancakes in the list.")
 # Pause -- WYOC -- Use .count() to count for a single item in the list and any multiple items. Use testSxores and classGPA.
-testCount = testScores.count(100)
-print(f"There was {testCount} perfect 100 scores.")
-testCount15 = testScores.count(15)
-print(f"There was {testCount15} 15 scores.")
-gpaCount = classGPA.count(1.99)
-print(f"There is {gpaCount} GPA equal to 1.99")
-gpaCountRepeat = classGPA.count(4.25)
-print(f"There is {gpaCountRepeat} GPA equal to 4.25")
+#testCount = testScores.count(100)
+#print(f"There was {testCount} perfect 100 scores.")
+#testCount15 = testScores.count(15)
+#print(f"There was {testCount15} 15 scores.")
+#gpaCount = classGPA.count(1.99)
+#print(f"There is {gpaCount} GPA equal to 1.99")
+#gpaCountRepeat = classGPA.count(4.25)
+#print(f"There is {gpaCountRepeat} GPA equal to 4.25")
 
-
+# Deleting All Contents of a List -- .clear()
+breakfastFoods.clear()
+print(f" The breakfast foods list is {breakfastFoods}.")
+testScores.clear()
+print(f" The testScores list is {testScores}.")
+classGPA.clear()
+print(f" The classGPA list is {classGPA}.")
