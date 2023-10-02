@@ -1,4 +1,4 @@
-# Collections Examples, Jacob Desha, v0.4b
+# Collections Examples, Jacob Desha, v0.5a
 
 # LIST -- ORDERED, CHANGEAVLE, ALLOWS DUPLICATE VALUES\
 breakfastFoods = ["Bacon", "Eggs", "Cereal", "Pancakes", "Milk"]
@@ -136,9 +136,14 @@ classGPA = [3.14, 2.25, 1.74, 1.99, 0.99, 4.25, 4.25]
 #print(f"There is {gpaCountRepeat} GPA equal to 4.25")
 
 # Deleting All Contents of a List -- .clear()
-breakfastFoods.clear()
-print(f" The breakfast foods list is {breakfastFoods}.")
-testScores.clear()
-print(f" The testScores list is {testScores}.")
-classGPA.clear()
-print(f" The classGPA list is {classGPA}.")
+#breakfastFoods.clear()
+#print(f" The breakfast foods list is {breakfastFoods}.")
+#testScores.clear()
+#print(f" The testScores list is {testScores}.")
+#classGPA.clear()
+#print(f" The classGPA list is {classGPA}.")
+
+# Common Bugs -- Index Out of Range
+print(f"The last item in the list is {breakfastFoods[4]}.")
+
+print(f" The last item in the teastScores list is {testScores[len(testScores) - 1]}.")
