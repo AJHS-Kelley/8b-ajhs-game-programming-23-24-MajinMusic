@@ -28,7 +28,7 @@ def rollDice(numDice, sizeDice):
         print(f"Roll: {roll}\n")
         print(f"Sum: {sum}\n")
         numRolled += 1
-    return sum
+    return sum # return will IMMEDIATELY exit a loop, function, if/elif/else block.
 
 rollDice(5, 7)
 rollDice(6, 10)
@@ -41,5 +41,21 @@ print(strengthPlayer)
 print(dexterityPlayer)
 print(wisdomPlayer)
 
+def genStats():
+    playerStats = [
+        0, # STENGTH
+        0, # DEXTERITY
+        0, # CONSTITUTION
+        0, # INTELLIGENCE
+        0, # WISDOM
+        0, # CHARISMA
+    ]
+    i = 0
+    while i < 6:
+        playerStats[i] = rollDice(3, 6) # STRENGTH
+        i += 1
 
+    print(playerStats)
+
+genStats()
 
