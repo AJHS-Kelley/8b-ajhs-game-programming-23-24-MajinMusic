@@ -1,4 +1,4 @@
-# Hangman Game by Jacob Desha, v0.3
+# Hangman Game by Jacob Desha, v0.4
 import random 
 words = 'friend, great, world, king, dog, queen, fish, tiger, seven, apple, intervention, coordination, intellectual, xylophone, containment, continental, satelite, burdensome, enlightened, economy, philanthropist, appendicitis, pseudoscience, creationism, geriatrics, xenomophobic, hippopotomonstrosesquippedaliophobia, neuroscopic, incomprehensible, inconsequential'.split()
 
@@ -46,10 +46,19 @@ def getRandomWord(wordList): # Return a random word from the list.
     # len(listName) - 1 is EXTREMELY COMMON FOR WORKING WITH LISTS.)
     return wordList[wordIndex]
 
-i = 0
-while i < 50:
-    word = getRandomWord(words)
-    print(word)
-    i += 1
+def displayBoard(missedLetters, correctLetters, secretWord)
+    print(HANGMAN_BOARD[len(missedLetters)])
+    print()
+
+    print('Missed Letters:', end = ' ')
+    for eachLetter in missedLetters:
+        print(eachLetter, end = ' ')
+    print()
+    # FINISH THURSDAY
+# i = 0
+# while i < 50:
+#     word = getRandomWord(words)
+#     print(word)
+#     i += 1
 
 
