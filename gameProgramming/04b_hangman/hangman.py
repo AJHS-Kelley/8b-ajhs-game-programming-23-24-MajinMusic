@@ -1,5 +1,5 @@
-# Hangman Game by Jacob Desha, v0.1
-
+# Hangman Game by Jacob Desha, v0.3
+import random 
 words = 'friend, great, world, king, dog, queen, fish, tiger, seven, apple, intervention, coordination, intellectual, xylophone, containment, continental, satelite, burdensome, enlightened, economy, philanthropist, appendicitis, pseudoscience, creationism, geriatrics, xenomophobic, hippopotomonstrosesquippedaliophobia, neuroscopic, incomprehensible, inconsequential'.split()
 
 # VARIABLE_NAMES in ALL-CAPS ARE CONSTANTS AND NOT MEANT TO CHANGE!
@@ -39,3 +39,17 @@ HANGMAN_BOARD = ['''
    /|\  |
    / \  |
      =======''']
+
+# Pick Word from List
+def getRandomWord(wordList): # Return a random word from the list.
+    wordIndex = random.randint(0, len(wordList) - 1)
+    # len(listName) - 1 is EXTREMELY COMMON FOR WORKING WITH LISTS.)
+    return wordList[wordIndex]
+
+i = 0
+while i < 50:
+    word = getRandomWord(words)
+    print(word)
+    i += 1
+
+
