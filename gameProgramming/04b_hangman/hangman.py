@@ -54,7 +54,16 @@ def displayBoard(missedLetters, correctLetters, secretWord)
     for eachLetter in missedLetters:
         print(eachLetter, end = ' ')
     print()
-    # FINISH THURSDAY
+
+    blanks = '_' * len(secretWord)
+    # Replace blaks with Correct Letters
+    for i in range(len(secretWord)):
+        if secretWord[i] in correctLetters:
+            blanks = blanks[i] + secretWord[i] + blanks[i+1]
+    
+    for letter in blankss:
+        print(letter, end = ' ')
+    print()
 # i = 0
 # while i < 50:
 #     word = getRandomWord(words)
