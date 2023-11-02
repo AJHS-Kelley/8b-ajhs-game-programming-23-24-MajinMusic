@@ -1,4 +1,4 @@
-# Hangman Game by Jacob Desha, v0.7
+# Hangman Game by Jacob Desha, v0.8
 import random 
 words = 'friend, great, world, king, dog, queen, fish, tiger, seven, apple, intervention, coordination, intellectual, xylophone, containment, continental, satelite, burdensome, enlightened, economy, philanthropist, appendicitis, pseudoscience, creationism, geriatrics, xenomophobic, hippopotomonstrosesquippedaliophobia, neuroscopic, incomprehensible, inconsequential'.split()
 
@@ -83,6 +83,23 @@ def getGuess(alreadyGuessed):
 def playAgain():
     print('Do you want to play again? Yes or No?')
     return input().lower().startswitch('y')
+
+# Introduce Game
+print('Welcome to Hangman by Jacob Desha')
+missedLetters = ''
+correctLetters = ''
+secretWord = getRandomWord(words)
+gameIsDone = False
+
+# Main Game Loop
+while True: 
+    displayBoard(missedLeters, correctLetters, secretWord)
+
+    guess = getGuess(missedLetters + correctLetters)
+    if guess in secretWord:
+        correctLetters = correctLetters + guess
+
+
 # i = 0
 # while i < 50:
 #     word = getRandomWord(words)
