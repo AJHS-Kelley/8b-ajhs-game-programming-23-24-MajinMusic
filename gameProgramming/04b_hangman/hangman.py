@@ -1,4 +1,4 @@
-# Hangman Game by Jacob Desha, v0.8
+# Hangman Game by Jacob Desha, v0.9
 import random 
 words = 'friend, great, world, king, dog, queen, fish, tiger, seven, apple, intervention, coordination, intellectual, xylophone, containment, continental, satelite, burdensome, enlightened, economy, philanthropist, appendicitis, pseudoscience, creationism, geriatrics, xenomophobic, hippopotomonstrosesquippedaliophobia, neuroscopic, incomprehensible, inconsequential'.split()
 
@@ -46,7 +46,7 @@ def getRandomWord(wordList): # Return a random word from the list.
     # len(listName) - 1 is EXTREMELY COMMON FOR WORKING WITH LISTS.)
     return wordList[wordIndex]
 
-def displayBoard(missedLetters, correctLetters, secretWord)
+def displayBoard(missedLetters, correctLetters, secretWord):
     print(HANGMAN_BOARD[len(missedLetters)])
     print()
 
@@ -61,7 +61,7 @@ def displayBoard(missedLetters, correctLetters, secretWord)
         if secretWord[i] in correctLetters:
             blanks = blanks[i] + secretWord[i] + blanks[i+1]
     
-    for letter in blankss:
+    for letter in blanks:
         print(letter, end = ' ')
     print()
 
@@ -93,12 +93,40 @@ gameIsDone = False
 
 # Main Game Loop
 while True: 
-    displayBoard(missedLeters, correctLetters, secretWord)
+    displayBoard(missedLetters, correctLetters, secretWord)
 
     guess = getGuess(missedLetters + correctLetters)
     if guess in secretWord:
         correctLetters = correctLetters + guess
 
+        # Check To See If Winner, Winner Chicken Dinner
+        foundAllLetters = True
+        for i in range(len(secretWord)):
+            if secretWord[i] not in correctLetters:
+                foundAllLetters = False 
+                break
+            if foundAllLetters: #if True:
+                print('You won... Haray...')
+                print('The secret word was' + secretWord)
+                gameIsDone = True
+    else:
+        missedLetters = missedLetters + guess
+
+        if len(missedLetters) == len(HANGMAN_BOARD):
+            displayBoard(missedLetters, correctLetters, secretWord)
+            print('You have run out of guesses and lost the game.')
+            print('You made this number of correct guesses ', str(len(missedLetters)))
+            print('The secret word was ' + secretWord)
+            gameIsDone = True
+
+    if gameIsDone: 
+        if playAgain():
+            missedLetters = ''
+            correctLetters = ''
+            gameIsDone = False
+            secretWord = getRandomWord(words)
+        else:
+            break
 
 # i = 0
 # while i < 50:
