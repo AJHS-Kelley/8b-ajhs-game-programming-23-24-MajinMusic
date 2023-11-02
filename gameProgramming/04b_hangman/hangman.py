@@ -1,4 +1,4 @@
-# Hangman Game by Jacob Desha, v0.4
+# Hangman Game by Jacob Desha, v0.6
 import random 
 words = 'friend, great, world, king, dog, queen, fish, tiger, seven, apple, intervention, coordination, intellectual, xylophone, containment, continental, satelite, burdensome, enlightened, economy, philanthropist, appendicitis, pseudoscience, creationism, geriatrics, xenomophobic, hippopotomonstrosesquippedaliophobia, neuroscopic, incomprehensible, inconsequential'.split()
 
@@ -64,6 +64,21 @@ def displayBoard(missedLetters, correctLetters, secretWord)
     for letter in blankss:
         print(letter, end = ' ')
     print()
+
+
+def getGuess(alreadyGuessed):
+    while True:
+        print('Please guess a letter and press enter.') 
+        guess = input()
+        guess = guess.lower
+        if len(guess) != 1:
+            print('Enter a single letter')
+        elif guess in alreadyGuessed:
+            print('Silly lil guy, you already guessed that letter')
+        elif guess not in 'abcdefghijklmnopqrstuvwxyz':
+            print('Please guess a LETTER from the English alphabet.')
+        else:
+            return guess
 # i = 0
 # while i < 50:
 #     word = getRandomWord(words)
