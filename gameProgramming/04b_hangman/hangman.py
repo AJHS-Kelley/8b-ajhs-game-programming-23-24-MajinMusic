@@ -1,4 +1,4 @@
-# Hangman Game by Jacob Desha, v0.10
+# Hangman Game by Jacob Desha, v0.12
 import random 
 words = 'friend, great, world, king, dog, queen, fish, tiger, seven, apple, intervention, coordination, intellectual, xylophone, containment, continental, satelite, burdensome, enlightened, economy, philanthropist, appendicitis, pseudoscience, creationism, geriatrics, xenomophobic, hippopotomonstrosesquippedaliophobia, neuroscopic, incomprehensible, inconsequential'.split()
 # DICTIONARY VERSION
@@ -60,10 +60,10 @@ HANGMAN_BOARD = ['''
      =======''']
 
 # Pick Word from List
-def getRandomWord(wordList): # Return a random word from the list.
-    wordIndex = random.randint(0, len(wordList) - 1)
-    # len(listName) - 1 is EXTREMELY COMMON FOR WORKING WITH LISTS.)
-    return wordList[wordIndex]
+# def getRandomWord(wordList): # Return a random word from the list.
+#     wordIndex = random.randint(0, len(wordList) - 1)
+#     # len(listName) - 1 is EXTREMELY COMMON FOR WORKING WITH LISTS.)
+#     return wordList[wordIndex]
 
 # Pick Word from Dictionary
 def getRandomWord(wordDict): # Return a random word from the list.
@@ -81,7 +81,7 @@ def displayBoard(missedLetters, correctLetters, secretWord):
     print()
 
     blanks = '_' * len(secretWord)
-    # Replace blaks with Correct Letters
+    # Replace blanks with Correct Letters
     for i in range(len(secretWord)):
         if secretWord[i] in correctLetters:
             blanks = blanks[:i] + secretWord[i] + blanks[i+1]
@@ -129,11 +129,12 @@ if difficulty == 'H': # Medium
 
 missedLetters = ''
 correctLetters = ''
-secretWord = getRandomWord(words)
+secretWord, secretSet = getRandomWord(words)
 gameIsDone = False
 
 # Main Game Loop
 while True: 
+    print('The scret word is from the ' + secretSet + ' category.\n')
     displayBoard(missedLetters, correctLetters, secretWord)
 
     guess = getGuess(missedLetters + correctLetters)
@@ -146,7 +147,7 @@ while True:
             if secretWord[i] not in correctLetters:
                 foundAllLetters = False 
                 break
-        if foundAllLetters: #if True:
+            if foundAllLetters: #if True:
                 print('You won... Haray...')
                 print('The secret word was' + secretWord)
                 gameIsDone = True
@@ -165,9 +166,10 @@ while True:
             missedLetters = ''
             correctLetters = ''
             gameIsDone = False
-            secretWord = getRandomWord(words)
+            secretWord,secretSet = getRandomWord(words)
         else:
             break
+
 
 # i = 0
 # while i < 50:
