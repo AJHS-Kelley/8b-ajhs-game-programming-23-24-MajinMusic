@@ -1,6 +1,14 @@
-# Hangman Game by Jacob Desha, v0.9
+# Hangman Game by Jacob Desha, v0.10
 import random 
 words = 'friend, great, world, king, dog, queen, fish, tiger, seven, apple, intervention, coordination, intellectual, xylophone, containment, continental, satelite, burdensome, enlightened, economy, philanthropist, appendicitis, pseudoscience, creationism, geriatrics, xenomophobic, hippopotomonstrosesquippedaliophobia, neuroscopic, incomprehensible, inconsequential'.split()
+# DICTIONARY VERSION
+# Stored in Key:Value Pairs.
+#Actual Dictionary Word (Key) : Value (Definition)
+# Uses {} to specify a dictionary.
+words = {'Colors': 'red orange yellow green blue indigo violet fuschia teal garnet gold black white silver'.split(),
+          'Animals': 'cat cow dog moose goose fish wombat wolverine giraffe hippopotamus lion alligator'.split(),
+          'Shapes': 'square triangle circle rhombus parallelogram trapezoid diamond dodecahedron'.split(),
+          'Foods': 'hamburger hotdog potato waffle pancake escargot oysters chips steak'.split()}
 
 # VARIABLE_NAMES in ALL-CAPS ARE CONSTANTS AND NOT MEANT TO CHANGE!
 HANGMAN_BOARD = ['''
@@ -59,7 +67,7 @@ def displayBoard(missedLetters, correctLetters, secretWord):
     # Replace blaks with Correct Letters
     for i in range(len(secretWord)):
         if secretWord[i] in correctLetters:
-            blanks = blanks[i] + secretWord[i] + blanks[i+1]
+            blanks = blanks[:i] + secretWord[i] + blanks[i+1]
     
     for letter in blanks:
         print(letter, end = ' ')
@@ -70,7 +78,7 @@ def getGuess(alreadyGuessed):
     while True:
         print('Please guess a letter and press enter.') 
         guess = input()
-        guess = guess.lower
+        guess = guess.lower()
         if len(guess) != 1:
             print('Enter a single letter')
         elif guess in alreadyGuessed:
@@ -82,7 +90,7 @@ def getGuess(alreadyGuessed):
         
 def playAgain():
     print('Do you want to play again? Yes or No?')
-    return input().lower().startswitch('y')
+    return input().lower().startswith('y')
 
 # Introduce Game
 print('Welcome to Hangman by Jacob Desha')
@@ -105,7 +113,7 @@ while True:
             if secretWord[i] not in correctLetters:
                 foundAllLetters = False 
                 break
-            if foundAllLetters: #if True:
+        if foundAllLetters: #if True:
                 print('You won... Haray...')
                 print('The secret word was' + secretWord)
                 gameIsDone = True
