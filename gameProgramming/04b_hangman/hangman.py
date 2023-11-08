@@ -1,7 +1,7 @@
 # Hangman Game by Jacob Desha, v0.12
 # Your code is still declaring victory whenever the first letter is guessed, no matter how many letters remain. 
 import random 
-words = 'friend, great, world, king, dog, queen, fish, tiger, seven, apple, intervention, coordination, intellectual, xylophone, containment, continental, satelite, burdensome, enlightened, economy, philanthropist, appendicitis, pseudoscience, creationism, geriatrics, xenomophobic, hippopotomonstrosesquippedaliophobia, neuroscopic, incomprehensible, inconsequential'.split()
+#words = 'friend, great, world, king, dog, queen, fish, tiger, seven, apple, intervention, coordination, intellectual, xylophone, containment, continental, satelite, burdensome, enlightened, economy, philanthropist, appendicitis, pseudoscience, creationism, geriatrics, xenomophobic, hippopotomonstrosesquippedaliophobia, neuroscopic, incomprehensible, inconsequential'.split()
 # DICTIONARY VERSION
 # Stored in Key:Value Pairs.
 #Actual Dictionary Word (Key) : Value (Definition)
@@ -85,7 +85,7 @@ def displayBoard(missedLetters, correctLetters, secretWord):
     # Replace blanks with Correct Letters
     for i in range(len(secretWord)):
         if secretWord[i] in correctLetters:
-            blanks = blanks[:i] + secretWord[i] + blanks[i+1]
+            blanks = blanks[:i] + secretWord[i] + blanks[i:]
     
     for letter in blanks:
         print(letter, end = ' ')
@@ -135,7 +135,7 @@ gameIsDone = False
 
 # Main Game Loop
 while True: 
-    print('The scret word is from the ' + secretSet + ' category.\n')
+    print('The secret word is from the ' + secretSet + ' category.\n')
     displayBoard(missedLetters, correctLetters, secretWord)
 
     guess = getGuess(missedLetters + correctLetters)
@@ -148,17 +148,17 @@ while True:
             if secretWord[i] not in correctLetters:
                 foundAllLetters = False 
                 break
-            if foundAllLetters: #if True:
+        if foundAllLetters: #if True:
                 print('You won... Haray...')
-                print('The secret word was' + secretWord)
+                print('The secret word was ' + secretWord)
                 gameIsDone = True
     else:
         missedLetters = missedLetters + guess
 
-        if len(missedLetters) == len(HANGMAN_BOARD):
+        if len(missedLetters) == len(HANGMAN_BOARD)-1:
             displayBoard(missedLetters, correctLetters, secretWord)
             print('You have run out of guesses and lost the game.')
-            print('You made this number of correct guesses ', str(len(missedLetters)))
+            print('You made this number of correct guesses ', str(len(correctLetters)))
             print('The secret word was ' + secretWord)
             gameIsDone = True
 
