@@ -1,4 +1,5 @@
 # Hangman Game by Jacob Desha, v0.12
+# Your code is still declaring victory whenever the first letter is guessed, no matter how many letters remain. 
 import random 
 words = 'friend, great, world, king, dog, queen, fish, tiger, seven, apple, intervention, coordination, intellectual, xylophone, containment, continental, satelite, burdensome, enlightened, economy, philanthropist, appendicitis, pseudoscience, creationism, geriatrics, xenomophobic, hippopotomonstrosesquippedaliophobia, neuroscopic, incomprehensible, inconsequential'.split()
 # DICTIONARY VERSION
