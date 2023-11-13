@@ -1,4 +1,4 @@
-# Example Game Functions Project, Jacob Desha, v0.2
+# Example Game Functions Project, Jacob Desha, v0.3
 import random
 
 
@@ -15,23 +15,36 @@ speed = 0
 cpuSpeed = 0
 
 # Functions
-def attack(action):
+def attack(action = punch):
     pass
+    action = input('Would you like to punch, kick, or headbutt?')
+    action = action.lower
+    if action == input().startswith('k'):
+        kick = True
+        action = kick
+    elif action == input().startswith('h'):
+        headbutt = True
+        action = headbutt
+    else:
+        punch = True
+        action = punch
+
     # Player chooses attack option
 
-def bodyType(option = 1):
+def bodyType(option):
     pass
     # Player chooses body type at beginning of game
 
     # What value bodyType determines
 
 def Playerturn(bodyType, speed, action): # Result of player's turn
-    pass
+    print(f'You chose {action}')
 
     # Whether the player gets hit or not 
 
 def cpuTurn(bodyType, speed, action): # Result of cpu's turn
     pass
+    one = punch; two = kick; three = headbutt
 
     # Whether the player gets hit or not
 
