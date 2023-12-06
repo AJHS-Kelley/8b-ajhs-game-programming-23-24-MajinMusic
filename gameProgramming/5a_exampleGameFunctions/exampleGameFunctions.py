@@ -13,39 +13,48 @@ health = 0
 cpuHealth = 0
 speed = 0
 cpuSpeed = 0
+action = ''
+bodyOption = ''
 
 # Functions
-def attack(action = punch):
-    pass
-    action = input('Would you like to punch, kick, or headbutt?')
-    action = action.lower
-    if action == input().startswith('k'):
+def attack(act):
+    global action
+    act = input('Would you like to punch, kick, or headbutt?')
+    action = act.lower
+    if action == action().startswith('k'):
         kick = True
         action = kick
-    elif action == input().startswith('h'):
+    elif action == action().startswith('h'):
         headbutt = True
         action = headbutt
-    else:
+    elif action == action().startswith('p'):
         punch = True
         action = punch
 
     # Player chooses attack option
 
-def bodyType(option):
-    option = input('What would you like your bodytype to be? Agile, Balanced, or Fit?') # Body Types: Agile, Balanced, Bulky
-    option = option.lower
-    if option == input().startswith('a'):
-        option = "Agile"
+def bodyType(body):
+    global bodyOption
+    global speed
+    global health
+
+    body = input('What would you like your bodytype to be? Agile, Balanced, or Fit?') # Body Types: Agile, Balanced, Bulky
+    bodyOption = body.lower
+    if bodyOption == bodyOption().startswith('a'):
+        body = 'Agile'
+        bodyOption = body
         health = 50
         speed = 3
         dodge = 25
-    elif option == input().startswith('b'):
-        option = "Balanced"
+    elif bodyOption == bodyOption().startswith('b'):
+        body = 'Balanced'
+        bodyOption = body
         health = 100
         speed = 2
         dodge = 50
-    else:
-        option = "Fit"
+    elif bodyOption == bodyOption().startswith('f'):
+        body = 'Fit'
+        bodyOption = body
         health = 150
         speed = 3
         dodge = 75
@@ -53,38 +62,47 @@ def bodyType(option):
 
     # What value bodyType determines
 
-def Playerturn(bodyType, speed, action): # Result of player's turn
+def playerTurn(body, speed, act): # Result of player's turn
+    global action
+    global bodyOption
     print(f'You chose {action}')
+    print(f'You chose {bodyOption}')
+
+    act = action
+    body = bodyOption
+    print(body)
+    print(speed)
+    print(act)
 
     # Whether the player gets hit or not 
 
-def cpuTurn(cpubodyType, cpudodge, cpuaction): # Result of cpu's turn
+def cpuTurn(cpubodyType, cpuDodge, cpuaction): # Result of cpu's turn
     pass
     if cpubodyType == 3:
         cpubodyType = "Agile"
         health = 50
         speed = 3
-        dodge = 25
+        cpuDodge = 25
     elif cpubodyType == 2:
         cpubodyType = "Balanced"
         health = 100
         speed = 2
-        dodge = 50
+        cpuDodge = 50
     else:
         cpubodyType = "Fit"
         health = 150
         speed = 3
-        dodge = 75
+        cpuDodge = 75
 
     if cpuaction == 3:
         kick = True
-        action = kick
+        cpuaction = kick
     elif cpuaction == 2:
         headbutt = True
-        action = headbutt
+        cpuaction = headbutt
     else:
         punch = True
-        action = punch
+        cpuaction = punch
 
     # Whether the player gets hit or not
 
@@ -102,3 +120,7 @@ def cpuTurn(cpubodyType, cpudodge, cpuaction): # Result of cpu's turn
 #     return ballCaught
 
 # catchBall(4.25, 107, 'Rainy')
+
+attack(action)
+bodyType(bodyOption)
+playerTurn(action, speed, bodyOption)
