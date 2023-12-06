@@ -1,4 +1,4 @@
-# Example Game Functions Project, Jacob Desha, v0.3
+# Example Game Functions Project, Jacob Desha, v0.4
 import random
 
 
@@ -8,7 +8,7 @@ punch = False
 kick = False
 headbutt = False
 hit = False
-dodge = False
+dodge = 75
 health = 0
 cpuHealth = 0
 speed = 0
@@ -32,7 +32,23 @@ def attack(action = punch):
     # Player chooses attack option
 
 def bodyType(option):
-    pass
+    option = input('What would you like your bodytype to be? Agile, Balanced, or Fit?') # Body Types: Agile, Balanced, Bulky
+    option = option.lower
+    if option == input().startswith('a'):
+        option = "Agile"
+        health = 50
+        speed = 3
+        dodge = 25
+    elif option == input().startswith('b'):
+        option = "Balanced"
+        health = 100
+        speed = 2
+        dodge = 50
+    else:
+        option = "Fit"
+        health = 150
+        speed = 3
+        dodge = 75
     # Player chooses body type at beginning of game
 
     # What value bodyType determines
@@ -42,9 +58,33 @@ def Playerturn(bodyType, speed, action): # Result of player's turn
 
     # Whether the player gets hit or not 
 
-def cpuTurn(bodyType, speed, action): # Result of cpu's turn
+def cpuTurn(cpubodyType, cpudodge, cpuaction): # Result of cpu's turn
     pass
-    one = punch; two = kick; three = headbutt
+    if cpubodyType == 3:
+        cpubodyType = "Agile"
+        health = 50
+        speed = 3
+        dodge = 25
+    elif cpubodyType == 2:
+        cpubodyType = "Balanced"
+        health = 100
+        speed = 2
+        dodge = 50
+    else:
+        cpubodyType = "Fit"
+        health = 150
+        speed = 3
+        dodge = 75
+
+    if cpuaction == 3:
+        kick = True
+        action = kick
+    elif cpuaction == 2:
+        headbutt = True
+        action = headbutt
+    else:
+        punch = True
+        action = punch
 
     # Whether the player gets hit or not
 
