@@ -1,6 +1,7 @@
 # Example Game Functions Project, Jacob Desha, v0.4
 import random
 
+# Missing random.randint()  
 
 # Game will be about punching, kicking, or headbutting an opponent until the opponent passes out, similar to rock, paper, scissors
 # Variables
@@ -20,14 +21,14 @@ bodyOption = ''
 def attack(act):
     global action
     act = input('Would you like to punch, kick, or headbutt?')
-    action = act.lower
-    if action == action().startswith('k'):
+    action = act.lower() 
+    if action == action.startswith('k'):
         kick = True
         action = kick
-    elif action == action().startswith('h'):
+    elif action == action.startswith('h'):
         headbutt = True
         action = headbutt
-    elif action == action().startswith('p'):
+    elif action == action.startswith('p'):
         punch = True
         action = punch
 
