@@ -1,4 +1,4 @@
-# Example Game Functions Project, Jacob Desha, v0.6
+# Example Game Functions Project, Jacob Desha, v0.7
 import random
 
 # Missing random.randint()  
@@ -26,6 +26,8 @@ isGameFinished = False
 DM = ''
 cpuaction = 0
 resume = ''
+cpudamage = 0
+
 
 
 def checkScaling():
@@ -67,16 +69,14 @@ def attack(act):
         
     else: 
         act = input("Input what kind of attack you'd like to do!")
-        while act == int(act):
-            act = input("Input what kind of attack you'd like to do!")
         action = act.lower()
 
     # Player chooses attack option
 
 def bodyType(body):
     global bodyOption, speed, health, dodgeChance, damage
-    while bodyOption == '':
-        if developerMode == False:
+    if developerMode == False:
+        while bodyOption == '':
             body = input('What would you like your bodytype to be? Agile, Balanced, or Large?') # Body Types: Agile, Balanced, Bulky
             bodyOption = body.lower()
             bodyOption = bodyOption.lower()
@@ -100,26 +100,20 @@ def bodyType(body):
                 print(f"You chose {bodyOption}")
             else:
                 print("Bodytype not available, please try again")
-        else: 
-            body = input("Input what kind of bodytype you would like to have")
-            health = input("Type the amount of healthpoints you would like to have!")
-            while health == str(health):
-                health = input("Please input a number for the amount of health points you would like to have.")
-            speed = input("Input the value you would like your speed to be!")
-            while speed == str(speed):
-                speed = input("Please input a number for the value you would like your speed to be.")
-            dodgeChance = speed * 25
-            damage = input("Input the amount of damage you would like to deal!")
-            while damage == str(damage):
-                damage = input("Please input a number for the amount of damage you would like to deal")
-
+    else: 
+        body = input("Input what kind of bodytype you would like to have")
+        bodyOption = body
+        health = int(input("Type the amount of healthpoints you would like to have!"))
+        speed = int(input("Input the value you would like your speed to be!"))
+        dodgeChance = speed * 25
+        damage = int(input("Input the amount of damage you would like to deal!"))
     
     # Player chooses body type at beginning of game
 
     # What value bodyType determines
 
 def playerTurn(action): # Result of player's turn
-    global cpuHealth, cpuDodge
+    global cpuHealth, cpuDodge, damage
 
     if developerMode == False: #Determines Damage For Attacks if NOT in Developer Mode
         if isGameFinished == False:
@@ -142,6 +136,9 @@ def playerTurn(action): # Result of player's turn
     elif action == "Dodge":
         cpuHealth -= damage
         print(f"You decided to {action}!")
+    else:
+        cpuHealth -= damage
+        print(f"You hit them with a {action} and did {damage} damage!")
 
     # elif action == "Kick" and kick == True and cpuDodge == False:
     #     cpuHealth -= damage
@@ -157,39 +154,31 @@ def playerTurn(action): # Result of player's turn
     # Whether the player gets hit or not 
 
 def cpu(cpuBody): # Result of cpu's turn
-    global punch, kick, headbutt, cpuSpeed, cpuHealth, cpuDodgeChance, cpuDodge, action, cpubodyType
-    while cpubodyType == '':
-        if developerMode == False:
-            cpubodyType = random.randint(1, 3)
-            if cpubodyType == 3:
-                cpubodyType = "Agile"
-                cpuHealth = 50
-                cpuSpeed = 3
-                cpuDodgeChance = 75
-            elif cpubodyType == 2:
-                cpubodyType = "Balanced"
-                cpuHealth = 100
-                cpuSpeed = 2
-                cpuDodgeChance = 50
-            else:
-                cpubodyType = "Large"
-                cpuHealth = 150
-                cpuSpeed = 1
-                cpuDodgeChance = 25
+    global punch, kick, headbutt, cpuSpeed, cpuHealth, cpuDodgeChance, cpuDodge, action, cpubodyType, cpudamage
+    if developerMode == False:
+        cpubodyType = random.randint(1, 3)
+        if cpubodyType == 3:
+            cpubodyType = "Agile"
+            cpuHealth = 50
+            cpuSpeed = 3
+            cpuDodgeChance = 75
+        elif cpubodyType == 2:
+            cpubodyType = "Balanced"
+            cpuHealth = 100
+            cpuSpeed = 2
+            cpuDodgeChance = 50
         else:
-            cpuBody = input("Please input what kind of body you would like the cpu to have!")
-            cpubodyType = cpuBody
-            cpuBody = input("Please input what kind of body you would like the cpu to have!")
-            cpuHealth = input("Type the amount of healthpoints you would like the cpu to have!")
-            while cpuHealth == str(health):
-                cpuHealth = input("Please input a number for the amount of health points you would like the cpu to have.")
-                cpuSpeed = input("Input the value you would like the cpu's speed to be!")
-            while cpuSpeed == str(speed):
-                cpuSpeed = input("Please input a number for the value you would like the cpu's speed to be.")
-            cpuDodgeChance = speed * 25
-            damage = input("Input the amount of damage you would like to deal!")
-            while damage == str(damage):
-                damage = input("Please input a number for the amount of damage you would like to deal")
+            cpubodyType = "Large"
+            cpuHealth = 150
+            cpuSpeed = 1
+            cpuDodgeChance = 25
+    else:
+        cpuBody = input("Please input what kind of body you would like the cpu to have!")
+        cpubodyType = cpuBody
+        cpuHealth = int(input("Type the amount of healthpoints you would like the cpu to have!"))
+        cpuSpeed = int(input("Input the value you would like the cpu's speed to be!"))
+        cpuDodgeChance = speed * 25
+        cpudamage = int(input("Input the amount of damage you would like the cpu to deal!"))
 
 
     # if speed == 3 and cpuDodgeChance < 51 and cpuaction == "Dodge":
@@ -200,7 +189,7 @@ def cpu(cpuBody): # Result of cpu's turn
     #     cpuDodge == True
 
 def cpuTurn(cpuaction):
-    global cpuDodge, kick, headbutt, punch, damage
+    global cpuDodge, kick, headbutt, punch, damage, health
     if developerMode == False:
         cpuaction = random.randint(1, 3)
         if cpuaction == 4:
@@ -216,8 +205,6 @@ def cpuTurn(cpuaction):
             cpuaction = "Punch"
     else: 
         cpuaction = input("Input what kind of attack you'd like the cpu to do!")
-        while cpuaction == int(cpuaction):
-            cpuaction = input("Input what kind of attack you'd like the cpu to do!")
         cpuaction.lower()
 
     if developerMode == False: #Determines Damage For Attacks if NOT in Developer Mode
@@ -240,7 +227,15 @@ def cpuTurn(cpuaction):
         print(f"You dodged the Cpu's {cpuaction}!\n \n \n")
     else:
         print(f"You got hit with a {cpuaction} and took {damage} damage!\n \n \n")
-        health - damage
+        health -= damage
+
+    if developerMode == False:
+        if cpuSpeed < dodgeChance / 25 and action == "Dodge":
+            print(f"You dodged the Cpu's {cpuaction}!\n \n \n")
+        else:
+            print(f"You got hit with a {cpuaction} and took {damage} damage!\n \n \n")
+            health -= damage
+
 
     # Whether the player gets hit or not
 
@@ -278,7 +273,7 @@ while isGameFinished == False:
         attack(action)
         playerTurn(action)
         cpuTurn(cpuaction)
-        if health > 0 and cpuHealth > health:
+        if health <= 0 and cpuHealth > health:
             print("You ran out of health and died!")
             resume = input("Would you like to play again?\n")
             if resume.startswith("y"):
