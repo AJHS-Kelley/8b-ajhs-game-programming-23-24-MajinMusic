@@ -1,4 +1,4 @@
-# Example Game Functions Project, Jacob Desha, v0.5
+# Example Game Functions Project, Jacob Desha, v0.6
 import random
 
 # Missing random.randint()  
@@ -24,42 +24,47 @@ damage = 0
 developerMode = False
 isGameFinished = False
 DM = ''
-
-if developerMode == False:
-    while isGameFinished == False
-        if kick == True:
-            damage = 20
-        elif headbutt == True:
-            damage = 30
-        elif punch == True:
-            damage = 15
-        else:
-            damage = 0
+cpuaction = 0
+resume = ''
 
 
+def checkScaling():
+    global damage
+    if developerMode == False: #Determines Damage For Attacks if NOT in Developer Mode
+            if isGameFinished == False:
+                if kick == True:
+                    damage = 20
+                elif headbutt == True:
+                    damage = 30
+                elif punch == True:
+                    damage = 15
+                else:
+                    damage = 0
         
 
 # Functions
 def attack(act):
-    global action, kick, headbutt, punch
+    global action, kick, headbutt, punch, damage
     if developerMode == False:
-        act = input('Would you like to punch, kick, headbutt, or dodge?')
+        act = input('Would you like to punch, kick, headbutt, or dodge?\n')
         action = act.lower() 
-        if action == action.startswith('k'):
+        if action.startswith('k'):
             kick = True
             action = "Kick"
             print(f"You chose to {action}!")
-        elif action == action.startswith('h'):
+        elif action.startswith('h'):
             headbutt = True
             action = "Headbutt"
             print(f"You chose to {action}!")
-        elif action == action.startswith('p'):
+        elif action.startswith('p'):
             punch = True
             action = "Punch"
             print(f"You chose to {action}!")
-        elif action == action.startswith('d'):
+        elif action.startswith('d'):
             action = "Dodge"
+            damage = 0
             print(f"You chose to {action}!")
+        
     else: 
         act = input("Input what kind of attack you'd like to do!")
         while act == int(act):
@@ -79,7 +84,7 @@ def bodyType(body):
                 bodyOption = 'Agile'
                 health = 50
                 speed = 3
-                dodgeChance = 25
+                dodgeChance = 75
                 print(f"You chose {bodyOption}")
             elif bodyOption.startswith("b"):
                 bodyOption = 'Balanced'
@@ -91,7 +96,7 @@ def bodyType(body):
                 bodyOption = 'Large'
                 health = 150
                 speed = 1
-                dodgeChance = 75
+                dodgeChance = 25
                 print(f"You chose {bodyOption}")
             else:
                 print("Bodytype not available, please try again")
@@ -113,16 +118,30 @@ def bodyType(body):
 
     # What value bodyType determines
 
-def playerTurn(act): # Result of player's turn
+def playerTurn(action): # Result of player's turn
     global cpuHealth, cpuDodge
 
-    attack(act)
+    if developerMode == False: #Determines Damage For Attacks if NOT in Developer Mode
+        if isGameFinished == False:
+            if kick == True:
+                damage = 20
+            elif headbutt == True:
+                damage = 30
+            elif punch == True:
+                damage = 15
+            else:
+                damage = 0
+    
+    if speed < cpuDodgeChance / 25 and cpuaction == "Dodge":
+        cpuDodge = True
+    else:
+        cpuDodge = False
 
     if cpuDodge == True:
         print(f"You missed your {action}")
-    else:
+    elif action == "Dodge":
         cpuHealth -= damage
-        print(f"You hit them with your {action} and did {damage} damage!")
+        print(f"You decided to {action}!")
 
     # elif action == "Kick" and kick == True and cpuDodge == False:
     #     cpuHealth -= damage
@@ -137,27 +156,26 @@ def playerTurn(act): # Result of player's turn
 
     # Whether the player gets hit or not 
 
-def cpu(cpuaction, cpuBody): # Result of cpu's turn
+def cpu(cpuBody): # Result of cpu's turn
     global punch, kick, headbutt, cpuSpeed, cpuHealth, cpuDodgeChance, cpuDodge, action, cpubodyType
     while cpubodyType == '':
         if developerMode == False:
             cpubodyType = random.randint(1, 3)
-            cpuaction = random.randint(1, 4)
             if cpubodyType == 3:
                 cpubodyType = "Agile"
                 cpuHealth = 50
                 cpuSpeed = 3
-                cpuDodgeChance = 25
+                cpuDodgeChance = 75
             elif cpubodyType == 2:
                 cpubodyType = "Balanced"
                 cpuHealth = 100
                 cpuSpeed = 2
                 cpuDodgeChance = 50
             else:
-                cpubodyType = "Fit"
+                cpubodyType = "Large"
                 cpuHealth = 150
-                cpuSpeed = 3
-                cpuDodgeChance = 75
+                cpuSpeed = 1
+                cpuDodgeChance = 25
         else:
             cpuBody = input("Please input what kind of body you would like the cpu to have!")
             cpubodyType = cpuBody
@@ -173,8 +191,18 @@ def cpu(cpuaction, cpuBody): # Result of cpu's turn
             while damage == str(damage):
                 damage = input("Please input a number for the amount of damage you would like to deal")
 
+
+    # if speed == 3 and cpuDodgeChance < 51 and cpuaction == "Dodge":
+    #     cpuDodge == False
+    # elif speed == 2 and cpuDodgeChance < 26 and cpuaction == "Dodge":
+    #     cpuDodge == False
+    # elif speed == 1 and cpuDodgeChance > 0 and cpuaction == "Dodge":
+    #     cpuDodge == True
+
+def cpuTurn(cpuaction):
+    global cpuDodge, kick, headbutt, punch, damage
     if developerMode == False:
-        cpubodyType = random.randint(1, 3)
+        cpuaction = random.randint(1, 3)
         if cpuaction == 4:
             cpuaction = "Dodge"
         elif cpuaction == 3:
@@ -187,21 +215,21 @@ def cpu(cpuaction, cpuBody): # Result of cpu's turn
             punch = True
             cpuaction = "Punch"
     else: 
-        act = input("Input what kind of attack you'd like the cpu to do!")
-        while act == int(act):
-            act = input("Input what kind of attack you'd like the cpu to do!")
-        action = act.lower()
+        cpuaction = input("Input what kind of attack you'd like the cpu to do!")
+        while cpuaction == int(cpuaction):
+            cpuaction = input("Input what kind of attack you'd like the cpu to do!")
+        cpuaction.lower()
 
-
-    # if speed == 3 and cpuDodgeChance < 51 and cpuaction == "Dodge":
-    #     cpuDodge == False
-    # elif speed == 2 and cpuDodgeChance < 26 and cpuaction == "Dodge":
-    #     cpuDodge == False
-    # elif speed == 1 and cpuDodgeChance > 0 and cpuaction == "Dodge":
-    #     cpuDodge == True
-
-def cpuTurn(cpuaction):
-    global cpuDodge
+    if developerMode == False: #Determines Damage For Attacks if NOT in Developer Mode
+        if isGameFinished == False:
+            if kick == True:
+                damage = 20
+            elif headbutt == True:
+                damage = 30
+            elif punch == True:
+                damage = 15
+            else:
+                damage = 0
 
     if speed < cpuDodgeChance / 25 and cpuaction == "Dodge":
         cpuDodge = True
@@ -209,9 +237,10 @@ def cpuTurn(cpuaction):
         cpuDodge = False
 
     if cpuSpeed < dodgeChance / 25 and action == "Dodge":
-        print(f"You dodged the {cpuaction}")
+        print(f"You dodged the Cpu's {cpuaction}!\n \n \n")
     else:
-        print(f"You got hit with a {cpuaction} and took {damage} damage!")
+        print(f"You got hit with a {cpuaction} and took {damage} damage!\n \n \n")
+        health - damage
 
     # Whether the player gets hit or not
 
@@ -231,12 +260,40 @@ def cpuTurn(cpuaction):
 # catchBall(4.25, 107, 'Rainy')
 
 
+while isGameFinished == False:
+    print("Welcome to The Fighter!\n \n")
+    DM = input("Would you like to play in developer mode? Y or N?").lower()
+    if DM.startswith("y"):
+        developerMode = True
+    else:
+        developerMode = False
+
+    bodyType(bodyOption)
+    cpu(cpuBody = '')
+    print("Now that you have chosen your options, Lets Start!\n \n \n")
+
+    while cpuHealth > 0 and health > 0:
+        print(f"Cpu has {cpuHealth} health points\nYou have {health} health points")
+        print(f"The Cpu's bodytype is {cpubodyType}\nYour bodytype is {bodyOption}")
+        attack(action)
+        playerTurn(action)
+        cpuTurn(cpuaction)
+        if health > 0 and cpuHealth > health:
+            print("You ran out of health and died!")
+            resume = input("Would you like to play again?\n")
+            if resume.startswith("y"):
+                print("\n\n\n\n")
+                break
+            else:
+                isGameFinished = True
+                break
+                    
+
 
 
     
 
     
 
-bodyType(bodyOption)
-attack(action)
-playerTurn()
+    
+
