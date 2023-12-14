@@ -1,4 +1,4 @@
-# Dice Rolling Module by Jacob Desha, v0.2
+# Dice Rolling Module by Jacob Desha, v0.3
 import random 
 
 def roll(numDice, sizeDice): # Verified Working 12-14-23
@@ -27,3 +27,10 @@ def isDoubles(roll1, roll2): # Verified Working 12-14-23
     else:
         isDoubles = False
     return isDoubles
+
+def isExploding(roll, sizeDice):
+    if roll == sizeDice:
+        isExploding = True
+    else:
+        isExploding = False
+    return isExploding
