@@ -1,4 +1,6 @@
 import dice
+import perfmon
+start = perfmon.execStart
 
 roll1 = dice.display(1, 6)
 #roll2 = dice.display(1, 6)
