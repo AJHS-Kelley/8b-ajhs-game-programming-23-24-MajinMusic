@@ -26,6 +26,8 @@ def doTranscription (dnaSequence: str) -> tuple:
     print("Please remember, in the RNA sequence U pairs with A from the DNA sequence.\n")
     rnaStart= time.time() #time.time() return the number of seconds since 00:00:00 UTC Jan. 01, 1970
     rnaSequence = input("Please enter the matching rna sequence.\n").upper()
+    if rnaSequence not in 'UGCA' * len(dnaSequence):
+        rnaSequence = input('Please please enter a valid rna sequence.\n')
     rnaStop = time.time()
     rnaTime = rnaStop-rnaStart
     return (rnaSequence, rnaTime) 
@@ -35,7 +37,7 @@ def doTranscription (dnaSequence: str) -> tuple:
 
 def verifySequence(dnaSequence: str, rnaSequence: str) -> bool:
     isMatch = False
-    if len(dnaSequence) != len(rnaSequence()):
+    if len(dnaSequence) != len(rnaSequence):
         print("The sequence is different lengths and cannot match.\n")
         return isMatch
     for dnaBase, rnaBase in zip(dnaSequence, rnaSequence):
@@ -50,6 +52,20 @@ def verifySequence(dnaSequence: str, rnaSequence: str) -> bool:
             isMatch = False
             print("Error no Match.")
             return isMatch
+        
+def getGuess(alreadyGuessed):
+    while True:
+        print('Please guess a letter and press enter.') 
+        guess = input()
+        guess = guess.lower()
+        if len(guess) != 1:
+            print('Enter a single letter')
+        elif guess in alreadyGuessed:
+            print('Silly lil guy, you already guessed that letter')
+        elif guess not in 'abcdefghijklmnopqrstuvwxyz':
+            print('Please guess a LETTER from the English alphabet.')
+        else:
+            return guess
     
 def calcScore(rnaSequence: str, rnaTime: float) -> int:
     score = 0
@@ -92,7 +108,7 @@ def saveScore(dnaSequence: str, rnaSequence: str, rnaTime, float) -> None:
 
 dna = genDNA()
 rna = doTranscription(dna)
-if verifySequence(dna, rna[0]()):
+if verifySequence(dna, rna[0]):
     score = (calcScore(rna[0], rna[1]))
     saveScore(dna, rna[0], rna[1], score)
 
