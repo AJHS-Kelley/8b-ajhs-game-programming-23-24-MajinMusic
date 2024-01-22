@@ -1,4 +1,4 @@
-# Number SLider by Jacob Desha, based on a project by Al Sweigart, v0.4
+# Number SLider by Jacob Desha, based on a project by Al Sweigart, v0.5
 
 import sys, random, pygame
 # sys module provides access to system resources (i.e. Operating System Commands) 
@@ -37,11 +37,10 @@ MESSAGECOLOR= WHITE
 
 # ESTABLISH WINDOW MARGINS
 XMARGIN = int((WINDOWWIDTH - (TILESIZE * BOARDWIDTH + (BOARDWIDTH - 1)) /2 ))
-# int((WINDOWWIDTH - (TILESIZE * BOARDWIDTH + (3))) /2)
-# int((640 - (320 + (3))) /2)
-# int((640 - (323 / 2))
-# int((640 - (161.5))
-# int(478.5)
-# XMARGIN = 478
-print(XMARGIN)
-YMARGIN = 
+YMARGIN = int((WINDOWHEIGHT - (TILESIZE * BOARDHEIGHT + (BOARDHEIGHT - 1)) /2 ))
+
+# DIRECTIONS
+UP = 'up'
+DOWN = 'down'
+LEFT = 'left'
+RIGHT = 'right'
