@@ -1,4 +1,4 @@
-# Number SLider by Jacob Desha, based on a project by Al Sweigart, v0.3
+# Number SLider by Jacob Desha, based on a project by Al Sweigart, v0.4
 
 import sys, random, pygame
 # sys module provides access to system resources (i.e. Operating System Commands) 
@@ -29,3 +29,8 @@ BGCOLO = DARKTURQUOISE
 TILECOLOR = GREEN
 TEXTCOLOR = WHITEBORDERCOLOR = BRIGHTBLUE
 BASICGONTSIZE = 20 # pixels
+
+# BUTTON SETUP
+BUTTONCOLOR = WHITE
+BUTTONTEXTCOLOR = BLACK
+MESSAGECOLOR= WHITE
