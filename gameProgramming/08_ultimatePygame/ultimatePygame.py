@@ -1,4 +1,4 @@
-# The Ultimate Pygame by Jacob Desha v0.0
+# The Ultimate Pygame by Jacob Desha v0.2
 
 import pygame
 from sys import exit
@@ -6,6 +6,7 @@ from sys import exit
 pygame.init()
 screen = pygame.display.set_mode((800, 400))
 pygame.display.set_caption('Game')
+clock = pygame.time.Clock()
 
 while True: 
     for event in pygame.event.get():
@@ -15,3 +16,4 @@ while True:
     # Draw all our elements
     # Update everything
     pygame.display.update()
+    clock.tick(60)
