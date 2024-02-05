@@ -1,3 +1,4 @@
+# Your code is not identifying correct mathches in the DNA / RNA sequences. 
 #DNAGame Jacob Desha
 # Import entire tool box
 import time, datetime
