@@ -2,6 +2,8 @@
 import pygame
 from sys import exit
 
+# You have a critical problem with your code that must be fixed, otherwise you are almost finished. 
+
 pygame.init()
 screen = pygame.display.set_mode((800, 400))
 pygame.display.set_caption('Game')
@@ -9,7 +11,10 @@ clock = pygame.time.Clock()
 test_font = pygame.font.Font(None, 50) #(Font type, font size)
 # mouse_pos = pygame.mouse.get_pos()
 
-
+# JACOB Nooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo!
+# NEVER, EVER, EVER link to files like this. 
+# It always has to be a reference to the relative folder, not the specific folder. 
+# i.e.  pygame.image.load('img/myImages/myImage.png')
 sky_surface = pygame.image.load("C:\8b-ajhs-game-programming-23-24-MajinMusic\img\sky1.png").convert()
 ground_surface = pygame.image.load("C:\8b-ajhs-game-programming-23-24-MajinMusic\img\ground.png").convert()
 text_surface = test_font.render('My game', False, 'Blue') #(text, AA, color)
