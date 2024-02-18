@@ -1,4 +1,4 @@
-# The Ultimate Pygame by Jacob Desha v0.7
+# The Ultimate Pygame by Jacob Desha v0.8
 import pygame
 from sys import exit
 
@@ -17,7 +17,6 @@ score_surf = test_font.render('My game', False, (64, 64, 64)) #(te)xt, AA, color
 score_rect = score_surf.get_rect(midbottom = (400, 50))
 snail_surf = pygame.image.load("img\snail1.png").convert_alpha()
 snail_rect = snail_surf.get_rect(bottomright = (0, 375))
-
 player_surf = pygame.image.load("img\player.png").convert_alpha()
 player_rect = player_surf.get_rect(midbottom = (50, 390))
 while True: 
@@ -28,6 +27,12 @@ while True:
             exit()
         # if event.type == pygame.MOUSEMOTION:
         #     if player_rect.collidepoint(event.pos): print('collision')
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                print('jump')
+
+        if event.type == pygame.KEYUP:
+            print('key up')
 # (300, 50)
     # Draw all our elements
     screen.blit(sky_surf,(0,0))
@@ -44,6 +49,12 @@ while True:
 
     snail_rect.x -= 4
     if snail_rect.right <= 0: snail_rect.left = 800
+
+
+
+    # keys = pygame.key.get_pressed()
+    # if keys[pygame.K_SPACE]:
+    #     print('jump')
 
     # if player_rect.colliderect(snail_rect):
     #     print('collision')
