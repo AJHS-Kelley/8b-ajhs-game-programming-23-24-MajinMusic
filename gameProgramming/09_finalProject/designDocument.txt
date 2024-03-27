@@ -14,6 +14,21 @@ Levels / Screens: 6
 
 Objectives / Enemies/ Obstacles:
 - Enemy Player
+- Enemy CPU
 
 Itmes / Equpment / Objects:
-- None
+- Stamina
+
+Difficulty Change:
+- More Enemy Health (Handicap)
+- Stronger Enemy Attacks
+- Less Stamina 
+
+Controls:
+- asd to Move (Player 1)
+- xcv to Attack (Player 1)
+- left, right, down to Move (Player 2)
+- , . / to Attack (player 2)
+- f to Select
+- r to Pause (Player 1)
+- m to Pause (Player 2)
