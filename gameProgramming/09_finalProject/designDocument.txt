@@ -1,0 +1,5 @@
+Game Genre / Type: Fighting
+Theme: Casual, Black and White
+
+Win Conditions: Emptying Enemy Hit Points
+Lose Conditions: Running Out Of Hit Points
