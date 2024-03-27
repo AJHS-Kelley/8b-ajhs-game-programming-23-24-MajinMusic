@@ -3,3 +3,17 @@ Theme: Casual, Black and White
 
 Win Conditions: Emptying Enemy Hit Points
 Lose Conditions: Running Out Of Hit Points
+
+Levels / Screens: 6
+- Title Screen
+- Main Menu
+- Options
+- Controls
+- Fighting Stage
+- Pause Menu
+
+Objectives / Enemies/ Obstacles:
+- Enemy Player
+
+Itmes / Equpment / Objects:
+- None
