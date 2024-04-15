@@ -1,16 +1,16 @@
-# Final Project, Jacob Desha, v0.1.2
+# Final Project, Jacob Desha, v0.1
 import pygame
 from sys import exit 
 import random
-xAxis = 100
-yAxis = 200
+x = 0
+y = 0
+xAxis = x
+yAxis = y
 width = 100
 height = 200
 vel = 10
 
 resolution = 0 # = Low Resolution (800, 600), 1 = High Resolution (1920, 1080)
-x = 0
-y = 0
 
 
 
@@ -40,7 +40,10 @@ moveSpeed = 1
 #     pygame.display.set_caption('HITBOX: Hard Mode')
 
 screen = pygame.display.set_mode((x, y))
-test_surface = pygame.image.load('img/player.png').convert_alpha()
+test_background = pygame.image.load('img/sky1.png').convert_alpha()
+
+#create player
+test_surface = pygame.image.load('img\square.png').convert_alpha()
 test_SRect = test_surface.get_rect(midtop = (100,200))
 
 
@@ -60,20 +63,15 @@ while True:
                     
             
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_a:
-                moveSpeed += 10
+            if event.key == pygame.K_SPACE:
+                test_SRect.x += vel
 
                 
 
-    if gameActive:
-        screen.blit(test_surface, test_SRect)
+    screen.blit(test_background, (100, 200))
+    screen.blit(test_surface, test_SRect)
     print(test_SRect.x)
-
-    moveSpeed += 10
-    test_SRect.x += moveSpeed
             
     pygame.display.update()
     clock.tick(60)
 
-if gameActive:
-        screen.blit(test_surface, test_SRect)
