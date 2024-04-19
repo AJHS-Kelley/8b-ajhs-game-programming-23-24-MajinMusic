@@ -1,4 +1,4 @@
-# Final Project, Jacob Desha, v0.2
+# Final Project, Jacob Desha, v0.2.1
 import pygame
 from sys import exit 
 import random
@@ -12,8 +12,10 @@ yAxis = y
 width = 100
 height = 200
 vel = 10
-gravity = 0
-moveSpeed = 0
+player1_gravity = 0
+player1_Speed = 0
+player2_Speed = 0
+player2_gravity = 0
 
 resolution = 0 # = Low Resolution (800, 600), 1 = High Resolution (1920, 1080)
 
@@ -46,11 +48,19 @@ cpudamage = 0
 screen = pygame.display.set_mode((x, y))
 test_background = pygame.image.load('img/background.png').convert()
 
-#create player 
-test_surface = pygame.image.load('img\square.png').convert()
-test_SRect = test_surface.get_rect(midbottom = (100,200))
-xAxis = test_SRect.x
-yAxis = test_SRect.y
+test_health = pygame.Surface((350, 25))
+test_health.fill('White')
+test_HRect = test_health.get_rect(midbottom = (190, 50))
+
+test_Hfilling = pygame.Surface((340, 15))
+test_Hfilling.fill('Red')
+test_filling = test_Hfilling.get_rect(midbottom = (190, 45))
+
+#create players
+player1_surface = pygame.image.load('img\square.png').convert()
+player1_rect = player1_surface.get_rect(midbottom = (100,200))
+player2_surface = pygame.image.load('img\square.png').convert()
+player2_rect = player2_surface.get_rect(midbottom = (400,400))
 
 
 while True:
@@ -66,33 +76,54 @@ while True:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_d:
-                moveSpeed = 20
-                moveSpeed += 1
-
-
+                player1_Speed = 20
+                player1_Speed += 1
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
-                moveSpeed = -20
-                moveSpeed -= 1
-
+                player1_Speed = -20
+                player1_Speed -= 1
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_a or pygame.K_d:
-                moveSpeed = 0
-
+                player1_Speed = 0
         if keys[pygame.K_SPACE]: 
-            gravity = -20
+            player1_gravity = -20
 
-                     
-    gravity += 1
-    test_SRect.x += moveSpeed
-    test_SRect.y += gravity
-    print(test_SRect.bottom)
-    print(moveSpeed)
-    if test_SRect.bottom > 401: 
-        test_SRect.bottom = 400
-        screen.blit(test_surface, test_SRect)
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
+                player2_Speed = 20
+                player2_Speed += 1
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                player2_Speed = -20
+                player2_Speed -= 1
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT or pygame.K_RIGHT:
+                player2_Speed = 0
+        if keys[pygame.K_UP]:
+            player2_gravity = -20
+            
+
+
+    player2_gravity += 1
+    player1_gravity += 1
+    player2_rect.x += player2_Speed
+    player1_rect.x += player1_Speed
+    player1_rect.y += player1_gravity
+    player2_rect.y += player2_gravity
+    print(player1_rect.bottom)
+    print(player1_Speed)
+
+    if player1_rect.bottom > 401: 
+        player1_rect.bottom = 400
+        screen.blit(player1_surface, player1_rect)
+    if player2_rect.bottom > 401:
+        player2_rect.bottom = 400
+        screen.blit(player2_surface, player2_rect)
     screen.blit(test_background, (0, 0))
-    screen.blit(test_surface, test_SRect)
+    screen.blit(player1_surface, player1_rect)
+    screen.blit(player2_surface, player2_rect)
+    screen.blit(test_health, test_HRect)
+    screen.blit(test_Hfilling, test_filling)
 
             
     pygame.display.update()
