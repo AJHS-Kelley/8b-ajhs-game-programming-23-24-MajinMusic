@@ -56,6 +56,14 @@ test_Hfilling = pygame.Surface((340, 15))
 test_Hfilling.fill('Red')
 test_filling = test_Hfilling.get_rect(midbottom = (190, 45))
 
+test_health2 = pygame.Surface((350, 25))
+test_health2.fill('White')
+test_HRect2 = test_health.get_rect(midbottom = (610, 50))
+
+test_Hfilling2 = pygame.Surface((340, 15))
+test_Hfilling2.fill('Red')
+test_filling2 = test_Hfilling.get_rect(midbottom = (610, 45))
+
 #create players
 player1_surface = pygame.image.load('img\square.png').convert()
 player1_rect = player1_surface.get_rect(midbottom = (100,200))
@@ -124,6 +132,8 @@ while True:
     screen.blit(player2_surface, player2_rect)
     screen.blit(test_health, test_HRect)
     screen.blit(test_Hfilling, test_filling)
+    screen.blit(test_health2, test_HRect2)
+    screen.blit(test_Hfilling2, test_filling2)
 
             
     pygame.display.update()
