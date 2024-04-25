@@ -1,4 +1,4 @@
-# Final Project, Jacob Desha, v0.2.1
+# Final Project, Jacob Desha, v0.2.2
 import pygame
 from sys import exit 
 import random
@@ -11,7 +11,8 @@ y = 0
 yAxis = y
 width = 100
 height = 200
-vel = 10
+player1_vel = 0
+player2_vel = 0
 player1_gravity = 0
 player1_Speed = 0
 player2_Speed = 0
@@ -37,6 +38,21 @@ health = 0
 cpuHealth = 0
 damage = 0
 cpudamage = 0
+
+
+def jump1():
+    global player1_vel
+    global player1_Speed
+    global player1_gravity
+    player1_gravity = -20
+    player1_Speed = player1_vel
+
+def jump2():
+    global player2_Speed
+    global player2_gravity
+    player2_gravity = -20
+    player2_Speed = player2_Speed
+
 
 # difficulty = int(input("Please choose a difficulty. Enter 1 for EASY or 2 for HARD.\n"))
 
@@ -66,7 +82,7 @@ test_filling2 = test_Hfilling.get_rect(midbottom = (610, 45))
 
 #create players
 player1_surface = pygame.image.load('img\square.png').convert()
-player1_rect = player1_surface.get_rect(midbottom = (100,200))
+player1_rect = player1_surface.get_rect(midbottom = (100,400))
 player2_surface = pygame.image.load('img\square.png').convert()
 player2_rect = player2_surface.get_rect(midbottom = (400,400))
 
@@ -81,49 +97,54 @@ while True:
         # if keys[pygame.K_d]:
         #     test_SRect.x += vel
 
+        # if event.type == pygame.KEYDOWN:
+        #     if event.key == pygame.K_SPACE:
+        #         jump1()
+        # if event.type == pygame.KEYDOWN:
+        #     if event.key == pygame.K_UP:
+        #         jump2()
+    if player1_vel > 0 and player1_rect.bottom > 400:
+        player1_Speed = player1_vel
+    elif keys[pygame.K_d]:
+        player1_Speed = 20
+        player1_vel = 20
+        player1_Speed += 1
+    elif keys[pygame.K_a]:
+        player1_Speed = -20
+        player1_vel = -20
+        player1_Speed -= 1
+    elif player1_rect.bottom == 400: 
+        player1_Speed = 0
+    if keys[pygame.K_SPACE]:
+        jump1()
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_d:
-                player1_Speed = 20
-                player1_Speed += 1
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_a:
-                player1_Speed = -20
-                player1_Speed -= 1
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_a or pygame.K_d:
-                player1_Speed = 0
-        if keys[pygame.K_SPACE]: 
-            player1_gravity = -20
+    if keys[pygame.K_RIGHT]:
+        player2_Speed = 20
+        player2_Speed += 1
+    elif keys[pygame.K_LEFT]:
+        player2_Speed = -20
+        player2_Speed -= 1
+    elif player2_rect == 400: 
+        player2_Speed = 0
+    if keys[pygame.K_UP]:
+        jump2()
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RIGHT:
-                player2_Speed = 20
-                player2_Speed += 1
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                player2_Speed = -20
-                player2_Speed -= 1
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT or pygame.K_RIGHT:
-                player2_Speed = 0
-        if keys[pygame.K_UP]:
-            player2_gravity = -20
-            
 
 
     player2_gravity += 1
-    player1_gravity += 1
     player2_rect.x += player2_Speed
     player1_rect.x += player1_Speed
     player1_rect.y += player1_gravity
     player2_rect.y += player2_gravity
-    print(player1_rect.bottom)
     print(player1_Speed)
 
-    if player1_rect.bottom > 401: 
+    if player1_rect.bottom > 400: 
         player1_rect.bottom = 400
         screen.blit(player1_surface, player1_rect)
+    elif player1_rect.bottom < 300:
+        player1_gravity += 1.5
+        
+    print(player1_vel)
     if player2_rect.bottom > 401:
         player2_rect.bottom = 400
         screen.blit(player2_surface, player2_rect)
