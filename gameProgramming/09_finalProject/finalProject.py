@@ -81,7 +81,7 @@ while True:
         # if keys[pygame.K_d]:
         #     test_SRect.x += vel
 
-
+        # PLAYER ONE MOVEMENT
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_d:
                 player1_Speed = 20
@@ -93,9 +93,11 @@ while True:
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_a or pygame.K_d:
                 player1_Speed = 0
+                
         if keys[pygame.K_SPACE]: 
             player1_gravity = -20
 
+        # PLAYER TWO MOVEMENT
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
                 player2_Speed = 20
